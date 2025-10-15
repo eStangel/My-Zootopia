@@ -9,14 +9,16 @@ animals_data = load_data('animals_data.json')
 output = ""
 for animal in animals_data:
     output += (
-        f"Name: {animal['name']}\n"
-        f"Diet: {animal['characteristics']['diet']}\n"
-        f"Location: {animal['locations'][0]}\n"
+        "<li class='cards__item'>\n"
+        f"<div class='card__title'>{animal['name']}</div>\n"
+        "<p class='card__text'>"
+        f"<strong>Diet:</strong> {animal['characteristics']['diet']}<br/>\n"
+        f"<strong>Location:</strong> {animal['locations'][0]}<br/>\n"
     )
     if animal['characteristics'].get('type', 0) != 0:
-        output += f"Type: {animal['characteristics']['type']}\n\n"
+        output += f"<strong>Type:</strong> {animal['characteristics']['type']}<br/>\n</p></li>\n"
     else:
-        output += "\n"
+        output += "</p></li>\n"
 
 with open("animals_template.html", "r") as f:
     data = f.read()
